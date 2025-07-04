@@ -14,26 +14,33 @@ export default function FirstTask() {
   });
 
   return (
-    <>
-      <input
-        value={searchValue}
-        onChange={(event) => {
-          handleChange(event);
-          console.log(filteredArray);
-        }}
-      />
-      <button onClick={() => setSearchValue("")}>Очистить</button>
-      {filteredArray.map((element, index) => {
-        return (
-          <ul key={index}>
-            {filteredArray.length === 0 ? (
-              <p>Ничего не найдено...</p>
-            ) : (
-              <li>{element}</li>
-            )}
-          </ul>
-        );
-      })}
-    </>
+    <div className="w-3/4 flex self-center-safe">
+      <div>
+        <input
+          className="border-2"
+          value={searchValue}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            handleChange(event);
+            console.log(filteredArray);
+          }}
+        />
+        <button onClick={() => setSearchValue("")}>Очистити</button>
+      </div>
+      <div>
+        <ul>
+          {filteredArray.length === 0 ? (
+            <p>Нічого не знайдено...</p>
+          ) : (
+            filteredArray.map((element, index) => {
+              return (
+                <li className="w-fit text-4xl" key={index}>
+                  {element}
+                </li>
+              );
+            })
+          )}
+        </ul>
+      </div>
+    </div>
   );
 }
